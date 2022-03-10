@@ -21,7 +21,7 @@ class Conexion():
         return True
 
     def cargarCli(clientes):
-        query = PyQt5.QtSql.QSqlQuery()
+        query = QtSql.QSqlQuery()
         query.prepare('insert into clientes (dni, apellidos, nombre, direccion, provincia, sexo, formaspago)'
                       'VALUES (: dni, :apellidos, :nombre, :direccion, :provincia, :sexo, :formaspago)')
         query.bindValue(': dni', str(clientes[0]))
@@ -48,10 +48,10 @@ class Conexion():
                 dni = query.value(0)
                 apellidos = query.value(1)
                 nombre = query.value(2)
-                var.ui.tableCli.setRowCount(index+1)
-                var.ui.tableCli.setItem(index, 0, QtWidgets.QTableWidgetItem(dni))
-                var.ui.tableCli.setItem(index, 1, QtWidgets.QTableWidgetItem(apellidos))
-                var.ui.tableCli.setItem(index, 2, QtWidgets.QTableWidgetItem(nombre))
+                var.ui.tableWidget.setRowCount(index+1)
+                var.ui.tableWidget.setItem(index, 0, QtWidgets.QTableWidgetItem(dni))
+                var.ui.tableWidget.setItem(index, 1, QtWidgets.QTableWidgetItem(apellidos))
+                var.ui.tableWidget.setItem(index, 2, QtWidgets.QTableWidgetItem(nombre))
                 index +=1
         else:
             print("Error mostrar clientes: ", query.lastError().text())
