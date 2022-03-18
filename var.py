@@ -6,6 +6,6 @@ global pay
 global vpro
 
 
-filedb = 'clientes.db'
+filedb = 'clientes.sqbpro'
 
 

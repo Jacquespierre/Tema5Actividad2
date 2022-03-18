@@ -61,7 +61,8 @@ class DialogTable(QtWidgets.QTableWidget):
             #Prepara el registro
             newcli =[]
             clitab = []
-            client = [var.ui.CampoDNI, var.ui.CampoNombre, var.ui.CampoApellidos, var.ui.CampoApellidos_2, var.ui.CampoFecha]
+            client = [var.ui.CampoDNI, var.ui.CampoApellidos, var.ui.CampoNombre, var.ui.CampoApellidos_2,
+                        var.ui.CampoFecha]
             k=0
             for i in client:
                 newcli.append(i.text())
@@ -82,10 +83,10 @@ class DialogTable(QtWidgets.QTableWidget):
                 #Comprobamos que no esté valip lo principal como tableWidget
                 row = 0
                 column = 0
-                var.ui.tableCli.insertRow(row)
+                var.ui.tableWidget.insertRow(row)
                 for registro in clitab:
                     cell = QtWidgets.QTableWidgetItem(registro)
-                    var.ui.tableCli.setItem(row,column,cell)
+                    var.ui.tableWidget.setItem(row,column,cell)
                     column +=1
 
                 conexion.Conexion.cargarCli(newcli)
