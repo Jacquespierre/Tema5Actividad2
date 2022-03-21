@@ -20,7 +20,7 @@ class Conexion():
         return True
 
     def cargarCli(clientes):
-
+        print("hola")
         query = QtSql.QSqlQuery()
         query.prepare('insert into clientes (dni, apellidos, nombre, direccion, provincia, sexo, formapago, fechaalta)'
                       'VALUES (:dni, :apellidos, :nombre, :direccion, :provincia, :sexo, :formapago, :fechaalta')
@@ -65,4 +65,8 @@ class Conexion():
                 var.ui.tableWidget.setItem(index, 7, QtWidgets.QTableWidgetItem(fechaalta))
                 index += 1
         else:
+            Conexion.mostrarClientes(self)
             print("Error mostrar clientes: ", query.lastError().text())
+
+
+

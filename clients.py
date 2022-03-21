@@ -1,9 +1,4 @@
-import newcli as newcli
-from PyQt5 import QtSql
-
-import conexion
 import var
-
 
 class Clientes():
     def validarDNI():

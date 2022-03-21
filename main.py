@@ -62,7 +62,7 @@ class DialogTable(QtWidgets.QTableWidget):
             newcli =[]
             clitab = []
             client = [var.ui.CampoDNI, var.ui.CampoApellidos, var.ui.CampoNombre, var.ui.CampoApellidos_2,
-                        var.ui.CampoFecha]
+                      var.ui.comboBox, var.ui.horizontalLayout_2, var.ui.metodosPago_2, var.ui.CampoFecha]
             k=0
             for i in client:
                 newcli.append(i.text())
@@ -117,8 +117,6 @@ class DialogTable(QtWidgets.QTableWidget):
                 column +=1
         except Exception as error:
             print('Error: %s' % str(error))
-
-
 
 
 class avisoSalir(QtWidgets.QDialog):
