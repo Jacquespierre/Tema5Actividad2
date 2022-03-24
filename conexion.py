@@ -36,7 +36,7 @@ class Conexion():
         # print (pagos)
         if query.exec_():
             print("Inserción correcta")
-            Conexion.mostrarClientes()
+            Conexion.mostrarClientes(clientes)
         else:
             print("Error: ", query.lastError().text())
 
@@ -68,5 +68,13 @@ class Conexion():
             Conexion.mostrarClientes(self)
             print("Error mostrar clientes: ", query.lastError().text())
 
-
+    def bajaClie(dni):
+        query = QtSql.QSqlQuery()
+        query.prepare('Borrado de clientes donde el dni es = :dni')
+        query.bindValue()
+        if query.exec_():
+            print('Baja de clientes')
+            var.ui.lblstatus.setText('Cliente con dni '+dni+ 'dado de baja')
+        else:
+            print('Error mostrar clientes: ', query.lastError().text())
 

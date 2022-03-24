@@ -1,4 +1,8 @@
+import conexion
 import var
+import events
+from PyQt5 import QtWidgets, QtSql
+
 
 class Clientes():
     def validarDNI():
@@ -36,7 +40,7 @@ class Clientes():
                 var.sex = 'Hombre'
                 print('Marcado masculino')
         except Exception as error:
-            print('Error en módulo seccionar sexo:', error)
+            print('Error en módlo seccionar sexo:', error)
 
     def cargarProv():
         try:
@@ -75,19 +79,71 @@ class Clientes():
             print('Error al cargar fecha: %s' % str(error))
 
     def showClients(self):
-        try:  # Preparamos el registro
+        try:
+            # Prepara el registro
             newcli = []
-            var.pay = []
+            clitab = []
             client = [var.ui.CampoDNI, var.ui.CampoApellidos, var.ui.CampoNombre, var.ui.CampoApellidos_2,
-                      var.ui.comboBox, var.ui.horizontalLayout_2,var.ui.metodosPago_2, var.ui.CampoFecha]
+                      var.ui.CampoFecha]
+            k = 0
             for i in client:
                 newcli.append(i.text())
+                if k < 4:
+                    clitab.append(i.text())
+                    k += 1
+
             newcli.append(var.vpro)
             # Elimina duplicados
-            var.pay = set(var.pay)
+            # var.pay = set(var.pay)
+            #########################################################################################
+
+            var.pay2 = events.Eventos.grupoPago()
+            newcli.append(var.sex)
+            newcli.append(var.pay2)
+
+            if client:
+                # Comprobamos que no esté vacio lo principal como tableWidget
+                row = 0
+                column = 0
+                var.ui.tableWidget.insertRow(row)
+                for registro in clitab:
+                    cell = QtWidgets.QTableWidgetItem(registro)
+                    var.ui.tableWidget.setItem(row, column, cell)
+                    column += 1
+
+                conexion.Conexion.cargarCli(newcli)
+
+            else:
+                print("Faltan Datos")
+
+            # clients.limpiarCli(client, var.selSexo, var.checkPago)
+        except Exception as error:
+            print("Error alta cliente: %s" % str(error))
+
+            #########################################################################################
+
             for j in var.pay:
                 newcli.append(j)
             newcli.append(var.sex)
             print(newcli)
+            print(clitab)
+            row = 0  # disposicion de la fila, problema: coloca el último como primero en cada click
+            column = 0  # disposicion de la columna
+            var.ui.tableWidget.insertRow(row)  # Inserta una fila nueva con cada click de botón
+            for registro in clitab:
+                # la celda tiene una posición fila, columa y cargamos en ella el dato
+                cell = QtWidgets.QTableWidgetItem(registro)  # carga en cell cada dato de la lista
+                var.ui.tableWidget.setItem(row, column, cell)  # lo escribe
+                column += 1
         except Exception as error:
-            print('Error: %s ' % str(error))
+            print('Error: %s' % str(error))
+
+    def bajaCliente(self):
+        try:
+            dni = var.ui.CampoDNI().text()
+            conexion.Conexion.bajaCliente(dni)
+            conexion.Conexion.mostrarClientes(self)
+           #Clientes.limpiarCli
+
+        except Exception as error:
+            print('Error cargar clientes: %s ' % str(error))

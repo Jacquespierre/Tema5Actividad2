@@ -65,6 +65,9 @@
          <property name="text">
           <string>Femenino</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">grupoSexo</string>
+         </attribute>
         </widget>
        </item>
        <item>
@@ -72,6 +75,9 @@
          <property name="text">
           <string>Masculino</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">grupoSexo</string>
+         </attribute>
         </widget>
        </item>
       </layout>
@@ -98,6 +104,9 @@
          <property name="text">
           <string>Efectivo</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">grupoPago</string>
+         </attribute>
         </widget>
        </item>
        <item>
@@ -105,6 +114,9 @@
          <property name="text">
           <string>Tarjeta</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">grupoPago</string>
+         </attribute>
         </widget>
        </item>
        <item>
@@ -112,6 +124,9 @@
          <property name="text">
           <string>Transferencia</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">grupoPago</string>
+         </attribute>
         </widget>
        </item>
       </layout>
@@ -434,4 +449,8 @@
  </widget>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="grupoSexo"/>
+  <buttongroup name="grupoPago"/>
+ </buttongroups>
 </ui>
