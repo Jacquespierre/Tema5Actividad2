@@ -1,3 +1,5 @@
+import newcli
+
 import conexion
 import var
 import events
@@ -83,8 +85,7 @@ class Clientes():
             # Prepara el registro
             newcli = []
             clitab = []
-            client = [var.ui.CampoDNI, var.ui.CampoApellidos, var.ui.CampoNombre, var.ui.CampoApellidos_2,
-                      var.ui.CampoFecha]
+            client = [var.ui.CampoDNI, var.ui.CampoApellidos, var.ui.CampoNombre, var.ui.CampoApellidos_2]
             k = 0
             for i in client:
                 newcli.append(i.text())
@@ -92,14 +93,15 @@ class Clientes():
                     clitab.append(i.text())
                     k += 1
 
-            newcli.append(var.vpro)
             # Elimina duplicados
             # var.pay = set(var.pay)
             #########################################################################################
 
             var.pay2 = events.Eventos.grupoPago()
+            newcli.append(var.vpro)
             newcli.append(var.sex)
-            newcli.append(var.pay2)
+            newcli.append(var.pay2[0])
+            newcli.append(var.ui.CampoFecha.text())
 
             if client:
                 # Comprobamos que no esté vacio lo principal como tableWidget
@@ -115,7 +117,7 @@ class Clientes():
 
             else:
                 print("Faltan Datos")
-
+            print(newcli)
             # clients.limpiarCli(client, var.selSexo, var.checkPago)
         except Exception as error:
             print("Error alta cliente: %s" % str(error))
@@ -143,7 +145,7 @@ class Clientes():
             dni = var.ui.CampoDNI().text()
             conexion.Conexion.bajaCliente(dni)
             conexion.Conexion.mostrarClientes(self)
-           #Clientes.limpiarCli
+        # Clientes.limpiarCli
 
         except Exception as error:
             print('Error cargar clientes: %s ' % str(error))

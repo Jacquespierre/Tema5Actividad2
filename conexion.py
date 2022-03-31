@@ -23,7 +23,7 @@ class Conexion():
         print("hola")
         query = QtSql.QSqlQuery()
         query.prepare('insert into clientes (dni, apellidos, nombre, direccion, provincia, sexo, formapago, fechaalta)'
-                      'VALUES (:dni, :apellidos, :nombre, :direccion, :provincia, :sexo, :formapago, :fechaalta')
+                      'VALUES (:dni, :apellidos, :nombre, :direccion, :provincia, :sexo, :formapago, :fechaalta)')
         query.bindValue(':dni', str(clientes[0]))
         query.bindValue(':apellidos', str(clientes[1]))
         query.bindValue(':nombre', str(clientes[2]))
@@ -34,7 +34,7 @@ class Conexion():
         query.bindValue(':formapago', str(clientes[6]))
         query.bindValue(':fechaalta', str(clientes[7]))
         # print (pagos)
-        if query.exec_():
+        if query.exec():
             print("Inserción correcta")
             Conexion.mostrarClientes(clientes)
         else:
@@ -72,9 +72,8 @@ class Conexion():
         query = QtSql.QSqlQuery()
         query.prepare('Borrado de clientes donde el dni es = :dni')
         query.bindValue()
-        if query.exec_():
+        if query.exec():
             print('Baja de clientes')
-            var.ui.lblstatus.setText('Cliente con dni '+dni+ 'dado de baja')
+            var.ui.lblstatus.setText('Cliente con dni ' + dni + 'dado de baja')
         else:
             print('Error mostrar clientes: ', query.lastError().text())
-
