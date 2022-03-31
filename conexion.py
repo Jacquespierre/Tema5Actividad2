@@ -20,7 +20,6 @@ class Conexion():
         return True
 
     def cargarCli(clientes):
-        print("hola")
         query = QtSql.QSqlQuery()
         query.prepare('insert into clientes (dni, apellidos, nombre, direccion, provincia, sexo, formapago, fechaalta)'
                       'VALUES (:dni, :apellidos, :nombre, :direccion, :provincia, :sexo, :formapago, :fechaalta)')
