@@ -1,5 +1,6 @@
 import PyQt5
 from PyQt5 import QtSql, QtWidgets
+from self import self
 
 import var
 
@@ -71,6 +72,8 @@ class Conexion():
         query = QtSql.QSqlQuery()
         query.prepare('Borrado de clientes donde el dni es = :dni')
         query.bindValue()
+
+            
         if query.exec():
             print('Baja de clientes')
             var.ui.lblstatus.setText('Cliente con dni ' + dni + 'dado de baja')

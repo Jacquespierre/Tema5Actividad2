@@ -140,12 +140,29 @@ class Clientes():
         except Exception as error:
             print('Error: %s' % str(error))
 
-    def bajaCliente(self):
+    def bajaClie(self):
         try:
             dni = var.ui.CampoDNI().text()
-            conexion.Conexion.bajaCliente(dni)
+            conexion.Conexion.bajaClie(dni)
             conexion.Conexion.mostrarClientes(self)
         # Clientes.limpiarCli
 
         except Exception as error:
             print('Error cargar clientes: %s ' % str(error))
+
+    def modificar(self):
+        try:
+            newdata=[]
+            client = [var.ui.CampoDNI, var.ui.CampoApellidos, var.ui.CampoNombre, var.ui.CampoApellidos_2]
+            for i in client:
+                newdata.append(i.text())
+            newdata.append(var.ui.comboBox.currentText())
+            newdata.append(var.sex)
+            var.pay = Clientes.grupoPago
+            print(var.pay)
+            cod = var.ui.codigo.text()
+            conexion.Conexion.modificar(cod,newdata)
+            conexion.Conexion.mostrarClientes()
+
+        except Exception as error:
+            print('Error al cargar clientes: %s'% str(error))
