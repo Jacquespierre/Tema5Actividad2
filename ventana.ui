@@ -424,7 +424,7 @@
         <normaloff>Imagenes/editar.png</normaloff>Imagenes/editar.png</iconset>
       </property>
      </widget>
-     <widget class="QPushButton" name="borrar">
+     <widget class="QPushButton" name="bajaClie">
       <property name="geometry">
        <rect>
         <x>660</x>
@@ -458,7 +458,7 @@
         <normaloff>Imagenes/kisspng-clip-art-openclipart-magnifying-glass-vector-graph-clipart-magnifying-glass-5c0574a59fdea4.5425880915438614136548.png</normaloff>Imagenes/kisspng-clip-art-openclipart-magnifying-glass-vector-graph-clipart-magnifying-glass-5c0574a59fdea4.5425880915438614136548.png</iconset>
       </property>
      </widget>
-     <widget class="QPushButton" name="buscar_2">
+     <widget class="QPushButton" name="limpiar">
       <property name="geometry">
        <rect>
         <x>480</x>
