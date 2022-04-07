@@ -160,9 +160,9 @@ class Clientes():
             newdata.append(var.sex)
             var.pay = Clientes.grupoPago
             print(var.pay)
-            cod = var.ui.codigo.text()
-            conexion.Conexion.modificar(cod,newdata)
-            conexion.Conexion.mostrarClientes()
+            codigo = var.ui.codigo.text()
+            conexion.Conexion.modificar(codigo,newdata)
+            conexion.Conexion.mostrarClientes(self)
 
         except Exception as error:
             print('Error al cargar clientes: %s'% str(error))
