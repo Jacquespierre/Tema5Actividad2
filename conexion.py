@@ -71,7 +71,7 @@ class Conexion():
     def bajaClie(dni):
         query = QtSql.QSqlQuery()
         query.prepare('Borrado de clientes donde el dni es = :dni')
-        query.bindValue()
+        query.bindValue(':dni',dni)
 
             
         if query.exec():
@@ -79,3 +79,24 @@ class Conexion():
             var.ui.lblstatus.setText('Cliente con dni ' + dni + 'dado de baja')
         else:
             print('Error mostrar clientes: ', query.lastError().text())
+
+    def modificarCliente(codigo, newdata):
+        query = QtSql.QSqlQuery()
+        codigo = into(codigo)
+        query.prepare('update clientes set dni=:dni, apellidos=:apellidos, nombre=:nombre, direccion=:direccion, provincia=:provincia, sexo=:sexo, '
+                      'formapago=:formapago, fechaalta=:fechaalta where codigo=:codigo')
+        query.bindValue(':codigo',int(codigo))
+        query.bindValue(':dni',str(newdata[0]))
+        query.bindValue(':apellidos',str(newdata[1]))
+        query.bindValue(':nombre',str(newdata[2]))
+        query.bindValue(':direccion', str(newdata[3]))
+        query.bindValue(':provincia',str(newdata[4]))
+        query.bindValue(':sexo', str(newdata[5]))
+        query.bindValue(':formapago', str(newdata[6]))
+        query.bindValue(':fechaalta',str(newdata[7]))
+
+        if query.exec():
+            print('Cliente modificado')
+            var.ui.lblstatus.setText('Cliente con dni '+str(newdata[0])+' modificado.')
+        else:
+            print("Error modificar cliente: ", query.lastError().text())
