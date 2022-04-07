@@ -158,11 +158,12 @@ class Clientes():
                 newdata.append(i.text())
             newdata.append(var.ui.comboBox.currentText())
             newdata.append(var.sex)
-            var.pay = Clientes.grupoPago
+            var.pay = Clientes.grupoPago()
             print(var.pay)
+            newdata.append(var.pay)
             codigo = var.ui.codigo.text()
             conexion.Conexion.modificar(codigo,newdata)
-            conexion.Conexion.mostrarClientes(self)
+            conexion.Conexion.mostrarClientes()
 
         except Exception as error:
-            print('Error al cargar clientes: %s'% str(error))
+            print('Error al cargar clientes: %s' % str(error))
