@@ -82,7 +82,7 @@ class Conexion():
 
     def modificarCliente(codigo, newdata):
         query = QtSql.QSqlQuery()
-        codigo = into(codigo)
+        codigo = int(codigo)
         query.prepare('update clientes set dni=:dni, apellidos=:apellidos, nombre=:nombre, direccion=:direccion, provincia=:provincia, sexo=:sexo, '
                       'formapago=:formapago, fechaalta=:fechaalta where codigo=:codigo')
         query.bindValue(':codigo',int(codigo))
