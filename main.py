@@ -48,8 +48,14 @@ class Main(QtWidgets.QMainWindow):
         #########################################################################################
 
         conexion.Conexion.db_connect(var.filedb)
-
         conexion.Conexion.mostrarClientes(self)
+
+
+        var.ui.Borrar.clicked.connect(clients.Clientes.bajaClie)
+        var.ui.limpiarCliente.clicked.connect(clients.Clientes.limpiar)
+        var.ui.buscarCliente.clicked.connect(clients.Clientes.buscar)
+        var.ui.modificarCliente.clicked.connect(clients.Clientes.modificar)
+        var.ui.actualizarCliente.clicked.connect(clients.Clientes.actualizar)
 
 
 class avisoSalir(QtWidgets.QDialog):

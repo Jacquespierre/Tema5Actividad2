@@ -167,3 +167,22 @@ class Clientes():
 
         except Exception as error:
             print('Error al cargar clientes: %s' % str(error))
+
+    def limpiarCli(self):
+        var.ui.CampoDNI.setText("")
+        var.ui.CampoFechaset.setText("")
+        var.ui.CampoApellidos.setText("")
+        var.ui.CampoNombre.setText("")
+        var.ui.CampoApellidos_2.setText("")
+        var.ui.comboBox.setText(0)
+
+        var.ui.horizontalLayout_2.setExclusive(False)
+        var.ui.radioButtonFem_2.setChecked(False)
+        var.ui.radioButtonMas_2.setChecked(False)
+        var.ui.GrupoSexo.setExclusive(True)
+
+        var.ui.metodoPago_2.setExclusive(False)
+        var.ui.checkEfect_2.setChecked(False)
+        var.ui.checkTarjeta_2.setChecked(False)
+        var.ui.checkTransfe_2.setChecked(False)
+        var.ui.GrupoPago.setExclusive(True)

@@ -100,3 +100,44 @@ class Conexion():
             var.ui.lblstatus.setText('Cliente con dni ' + str(newdata[0]) + ' modificado.')
         else:
             print("Error modificar cliente: ", query.lastError().text())
+
+    def buscarCliente(self):
+        dni = var.ui.CampoDNI.text()
+        query = QtSql.QSqlQuery()
+        query.prepare('select apellidos, nombre, direccion, provincia, sexo,'
+                      'formapago from clients where dni=:dni')
+        query.bindValue(':dni', dni)
+
+        if query.exec():
+            while query.next():
+                nombre = query.value(1)
+                apellidos = query.value(2)
+                direccion = query.value(3)
+                provincia = query.value(4)
+                sexo = query.value(5)
+                formapago = query.value(6)
+
+                var.ui.CampoNombre(nombre)
+                var.ui.CampoApellidos(apellidos)
+                var.ui.CampoApellidos_2(direccion)
+                var.ui.comboBox(direccion)
+                x = ['Álava', 'Albacete', 'Alicante', 'Almería', 'Asturias', 'Ávila', 'Badajoz', 'Barcelona',
+                     'Burgos', 'Cáceres', 'Cádiz', 'Cantabria', 'Castellón', 'Ceuta', 'Ciudad', 'Real', 'Córdoba',
+                     'Cuenca', 'Girona', 'Las Palmas', 'Granada', 'Guadalajara', 'Guipúzcoa', 'Huelva', 'Huesca',
+                     'Illes Balears', 'Jaén', 'A Coruña', 'La Rioja', 'León', 'Lleida', 'Lugo', 'Madrid', 'Málaga',
+                     'Melilla', 'Murcia', 'Navarra', 'Ourense', 'Palencia', 'Pontevedra', 'Salamanca', 'Segovia',
+                     'Sevilla', 'Soria', 'Tarragona', 'Santa Cruz de Tenerife', 'Teruel', 'Toledo', 'Valencia',
+                     'Valladolid', 'Vizcaya', 'Zamora', 'Zaragoza']
+                var.ui.ComboBox.setCurrentIndex(1, ..., 52)
+                if (x not in provincia):
+                    print('Provincia no está en la lista')
+
+                query.bindValue(':dni', str(clientes[0]))
+                query.bindValue(':apellidos', str(clientes[1]))
+                query.bindValue(':nombre', str(clientes[2]))
+                query.bindValue(':direccion', str(clientes[3]))
+                query.bindValue(':provincia', str(clientes[4]))
+                query.bindValue(':sexo', str(clientes[5]))
+                # pagos
+                query.bindValue(':formapago', str(clientes[6]))
+                query.bindValue(':fechaalta', str(clientes[7]))
