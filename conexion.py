@@ -129,7 +129,7 @@ class Conexion():
                         'Melilla', 'Murcia', 'Navarra', 'Ourense', 'Palencia', 'Pontevedra', 'Salamanca', 'Segovia',
                         'Sevilla', 'Soria', 'Tarragona', 'Santa Cruz de Tenerife', 'Teruel', 'Toledo', 'Valencia',
                         'Valladolid', 'Vizcaya', 'Zamora', 'Zaragoza']
-                var.ui.ComboBox.range.setCurrentIndex(1, 52)
+                var.ui.ComboBox.setCurrentIndex.range(52)
                 if (prov not in provincia):
                     print('Provincia no está en la lista')
                 var.ui.horizontalLayout_2(sexo)
