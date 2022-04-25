@@ -1,5 +1,3 @@
-import newcli
-
 import conexion
 import var
 import events
@@ -152,7 +150,7 @@ class Clientes():
 
     def modificar(self):
         try:
-            newdata=[]
+            newdata = []
             client = [var.ui.CampoDNI, var.ui.CampoApellidos, var.ui.CampoNombre, var.ui.CampoApellidos_2]
             for i in client:
                 newdata.append(i.text())
@@ -162,7 +160,7 @@ class Clientes():
             print(var.pay)
             newdata.append(var.pay)
             codigo = var.ui.codigo.text()
-            conexion.Conexion.modificar(codigo,newdata)
+            conexion.Conexion.modificar(codigo, newdata)
             conexion.Conexion.mostrarClientes()
 
         except Exception as error:

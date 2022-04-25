@@ -51,11 +51,11 @@ class Main(QtWidgets.QMainWindow):
         conexion.Conexion.mostrarClientes(self)
 
 
-        var.ui.Borrar.clicked.connect(clients.Clientes.bajaClie)
-        var.ui.limpiarCliente.clicked.connect(clients.Clientes.limpiar)
-        var.ui.buscarCliente.clicked.connect(clients.Clientes.buscar)
-        var.ui.modificarCliente.clicked.connect(clients.Clientes.modificar)
-        var.ui.actualizarCliente.clicked.connect(clients.Clientes.actualizar)
+        var.ui.bajaClie.clicked.connect(conexion.Conexion.bajaClie)
+        var.ui.limpiar.clicked.connect(clients.Clientes.limpiarCli)
+        var.ui.buscar.clicked.connect(conexion.Conexion.buscarCliente)
+        var.ui.modificar.clicked.connect(clients.Clientes.showClients)
+        var.ui.pushButton.clicked.connect(clients.Clientes.modificar)
 
 
 class avisoSalir(QtWidgets.QDialog):

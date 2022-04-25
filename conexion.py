@@ -116,28 +116,22 @@ class Conexion():
                 provincia = query.value(4)
                 sexo = query.value(5)
                 formapago = query.value(6)
+                fecha = query.value(7)
 
                 var.ui.CampoNombre(nombre)
                 var.ui.CampoApellidos(apellidos)
                 var.ui.CampoApellidos_2(direccion)
                 var.ui.comboBox(direccion)
-                x = ['Álava', 'Albacete', 'Alicante', 'Almería', 'Asturias', 'Ávila', 'Badajoz', 'Barcelona',
-                     'Burgos', 'Cáceres', 'Cádiz', 'Cantabria', 'Castellón', 'Ceuta', 'Ciudad', 'Real', 'Córdoba',
-                     'Cuenca', 'Girona', 'Las Palmas', 'Granada', 'Guadalajara', 'Guipúzcoa', 'Huelva', 'Huesca',
-                     'Illes Balears', 'Jaén', 'A Coruña', 'La Rioja', 'León', 'Lleida', 'Lugo', 'Madrid', 'Málaga',
-                     'Melilla', 'Murcia', 'Navarra', 'Ourense', 'Palencia', 'Pontevedra', 'Salamanca', 'Segovia',
-                     'Sevilla', 'Soria', 'Tarragona', 'Santa Cruz de Tenerife', 'Teruel', 'Toledo', 'Valencia',
-                     'Valladolid', 'Vizcaya', 'Zamora', 'Zaragoza']
-                var.ui.ComboBox.setCurrentIndex(1, ..., 52)
-                if (x not in provincia):
+                prov = ['Álava', 'Albacete', 'Alicante', 'Almería', 'Asturias', 'Ávila', 'Badajoz', 'Barcelona',
+                        'Burgos', 'Cáceres', 'Cádiz', 'Cantabria', 'Castellón', 'Ceuta', 'Ciudad', 'Real', 'Córdoba',
+                        'Cuenca', 'Girona', 'Las Palmas', 'Granada', 'Guadalajara', 'Guipúzcoa', 'Huelva', 'Huesca',
+                        'Illes Balears', 'Jaén', 'A Coruña', 'La Rioja', 'León', 'Lleida', 'Lugo', 'Madrid', 'Málaga',
+                        'Melilla', 'Murcia', 'Navarra', 'Ourense', 'Palencia', 'Pontevedra', 'Salamanca', 'Segovia',
+                        'Sevilla', 'Soria', 'Tarragona', 'Santa Cruz de Tenerife', 'Teruel', 'Toledo', 'Valencia',
+                        'Valladolid', 'Vizcaya', 'Zamora', 'Zaragoza']
+                var.ui.ComboBox.range.setCurrentIndex(1, 52)
+                if (prov not in provincia):
                     print('Provincia no está en la lista')
-
-                query.bindValue(':dni', str(clientes[0]))
-                query.bindValue(':apellidos', str(clientes[1]))
-                query.bindValue(':nombre', str(clientes[2]))
-                query.bindValue(':direccion', str(clientes[3]))
-                query.bindValue(':provincia', str(clientes[4]))
-                query.bindValue(':sexo', str(clientes[5]))
-                # pagos
-                query.bindValue(':formapago', str(clientes[6]))
-                query.bindValue(':fechaalta', str(clientes[7]))
+                var.ui.horizontalLayout_2(sexo)
+                var.ui.metodoPago_2(formapago)
+                var.ui.CampoFecha(fecha)

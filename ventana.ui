@@ -410,7 +410,7 @@
      <widget class="QPushButton" name="modificar">
       <property name="geometry">
        <rect>
-        <x>340</x>
+        <x>240</x>
         <y>590</y>
         <width>75</width>
         <height>23</height>
@@ -444,7 +444,7 @@
      <widget class="QPushButton" name="buscar">
       <property name="geometry">
        <rect>
-        <x>200</x>
+        <x>150</x>
         <y>590</y>
         <width>75</width>
         <height>23</height>
@@ -461,7 +461,7 @@
      <widget class="QPushButton" name="limpiar">
       <property name="geometry">
        <rect>
-        <x>480</x>
+        <x>340</x>
         <y>590</y>
         <width>75</width>
         <height>23</height>
@@ -473,6 +473,23 @@
       <property name="icon">
        <iconset>
         <normaloff>Imagenes/hygiene_toilet_paper_icon_134410.png</normaloff>Imagenes/hygiene_toilet_paper_icon_134410.png</iconset>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>590</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Actualizar</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>Imagenes/update.png</normaloff>Imagenes/update.png</iconset>
       </property>
      </widget>
     </widget>
@@ -518,7 +535,7 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="grupoPago"/>
   <buttongroup name="grupoSexo"/>
+  <buttongroup name="grupoPago"/>
  </buttongroups>
 </ui>
