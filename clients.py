@@ -83,7 +83,8 @@ class Clientes():
             # Prepara el registro
             newcli = []
             clitab = []
-            client = [var.ui.CampoDNI, var.ui.CampoApellidos, var.ui.CampoNombre, var.ui.CampoApellidos_2]
+            client = [var.ui.CampoDNI, var.ui.CampoApellidos, var.ui.CampoNombre, var.ui.CampoApellidos_2,
+                      var.ui.comboBox, var.ui.grupoSexo, var.ui.grupoPago]
             k = 0
             for i in client:
                 newcli.append(i.text())
@@ -138,12 +139,12 @@ class Clientes():
         except Exception as error:
             print('Error: %s' % str(error))
 
-    def bajaClie(self):
+    def bajaClie(dni):
         try:
-            dni = var.ui.CampoDNI().text()
-            conexion.Conexion.bajaClie(dni)
-            conexion.Conexion.mostrarClientes(self)
-        # Clientes.limpiarCli
+            dni = var.ui.CampoDNI().currentText()
+            conexion.Conexion.bajaCliente(dni)
+            conexion.Conexion.mostrarClientes(dni)
+            Clientes.limpiarCli(dni)
 
         except Exception as error:
             print('Error cargar clientes: %s ' % str(error))
@@ -156,12 +157,12 @@ class Clientes():
                 newdata.append(i.text())
             newdata.append(var.ui.comboBox.currentText())
             newdata.append(var.sex)
-            var.pay = Clientes.grupoPago()
-            print(var.pay)
-            newdata.append(var.pay)
-            codigo = var.ui.codigo.text()
-            conexion.Conexion.modificar(codigo, newdata)
-            conexion.Conexion.mostrarClientes()
+            #var.pay = Clientes.grupoPago()
+            #print(var.pay)
+            #newdata.append(var.pay)
+            #codigo = var.ui.codigo.text()
+            #conexion.Conexion.modificar(codigo, newdata)
+            #conexion.Conexion.mostrarClientes()
 
         except Exception as error:
             print('Error al cargar clientes: %s' % str(error))

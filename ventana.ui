@@ -475,7 +475,7 @@
         <normaloff>Imagenes/hygiene_toilet_paper_icon_134410.png</normaloff>Imagenes/hygiene_toilet_paper_icon_134410.png</iconset>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="actualizar">
       <property name="geometry">
        <rect>
         <x>480</x>

@@ -66,16 +66,16 @@ class Conexion():
                 index += 1
         else:
             Conexion.mostrarClientes(self)
-            print("Error mostrar clientes: ", query.lastError().text())
+            print("Error mostrar los clientes: ", query.lastError().text())
 
-    def bajaClie(dni):
+    def bajaCliente(dni):
         query = QtSql.QSqlQuery()
         query.prepare('Borrado de clientes donde el dni es = :dni')
         query.bindValue(':dni', dni)
 
         if query.exec():
             print('Baja de clientes')
-            var.ui.lblstatus.setText('Cliente con dni ' + dni + 'dado de baja')
+            var.ui.lblstatus.setText('Cliente con dni ' + self + 'dado de baja')
         else:
             print('Error mostrar clientes: ', query.lastError().text())
 
@@ -105,13 +105,13 @@ class Conexion():
         dni = var.ui.CampoDNI.text()
         query = QtSql.QSqlQuery()
         query.prepare('select apellidos, nombre, direccion, provincia, sexo,'
-                      'formapago from clients where dni=:dni')
+                      'formapago, fecha from clients where dni=:dni')
         query.bindValue(':dni', dni)
 
         if query.exec():
             while query.next():
-                nombre = query.value(1)
-                apellidos = query.value(2)
+                apellidos = query.value(1)
+                nombre = query.value(2)
                 direccion = query.value(3)
                 provincia = query.value(4)
                 sexo = query.value(5)

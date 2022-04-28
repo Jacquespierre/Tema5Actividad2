@@ -23,8 +23,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.setupUi(self)
         var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
         var.ui.Salir.clicked.connect(events.Eventos.Salir)
-        #var.sex = (var.ui.radioButtonFem_2, var.ui.radioButtonMas_2)
-        #for i in var.sex:
+        # var.sex = (var.ui.radioButtonFem_2, var.ui.radioButtonMas_2)
+        # for i in var.sex:
         #    i.toggled.connect(clients.Clientes.selSexo)
         '''
         Eventos cada de texto
@@ -50,12 +50,11 @@ class Main(QtWidgets.QMainWindow):
         conexion.Conexion.db_connect(var.filedb)
         conexion.Conexion.mostrarClientes(self)
 
-
-        var.ui.bajaClie.clicked.connect(conexion.Conexion.bajaClie)
+        var.ui.bajaClie.clicked.connect(conexion.Conexion.bajaCliente)
         var.ui.limpiar.clicked.connect(clients.Clientes.limpiarCli)
         var.ui.buscar.clicked.connect(conexion.Conexion.buscarCliente)
         var.ui.modificar.clicked.connect(clients.Clientes.showClients)
-        var.ui.pushButton.clicked.connect(clients.Clientes.modificar)
+        var.ui.actualizar.clicked.connect(clients.Clientes.modificar)
 
 
 class avisoSalir(QtWidgets.QDialog):
