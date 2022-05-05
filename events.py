@@ -31,4 +31,3 @@ class Eventos:
 
         except Exception as error:
             print('Error: %s ' % str(error))
-

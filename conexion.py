@@ -1,6 +1,5 @@
 import PyQt5
 from PyQt5 import QtSql, QtWidgets
-from self import self
 
 import var
 
@@ -34,7 +33,7 @@ class Conexion():
         query.bindValue(':formapago', str(clientes[6]))
         query.bindValue(':fechaalta', str(clientes[7]))
         # print (pagos)
-        if query.exec():
+        if query.exec_():
             print("Inserción correcta")
             Conexion.mostrarClientes(clientes)
         else:
@@ -44,7 +43,7 @@ class Conexion():
         index = 0
         query = QtSql.QSqlQuery()
         query.prepare('select dni, apellidos, nombre, direccion, provincia, sexo, formapago, fechaalta from clientes')
-        if query.exec():
+        if query.exec_():
             while query.next():
                 dni = query.value(0)
                 apellidos = query.value(1)
@@ -70,14 +69,14 @@ class Conexion():
 
     def bajaCliente(dni):
         query = QtSql.QSqlQuery()
-        query.prepare('Borrado de clientes donde el dni es = :dni')
+        query.prepare('delete from clientes where dni = :dni')
         query.bindValue(':dni', dni)
 
-        if query.exec():
+        if query.exec_():
             print('Baja de clientes')
-            var.ui.lblstatus.setText('Cliente con dni ' + self + 'dado de baja')
+            var.ui.label_2.setText('Cliente con dni ' + dni + ' dado de baja')
         else:
-            print('Error mostrar clientes: ', query.lastError().text())
+            print('Error mostrar putos clientes: ', query.lastError().text())
 
     def modificar(codigo, newdata):
         query = QtSql.QSqlQuery()
@@ -95,7 +94,7 @@ class Conexion():
         query.bindValue(':formapago', str(newdata[6]))
         query.bindValue(':fechaalta', str(newdata[7]))
 
-        if query.exec():
+        if query.exec_():
             print('Cliente modificado')
             var.ui.lblstatus.setText('Cliente con dni ' + str(newdata[0]) + ' modificado.')
         else:
@@ -108,7 +107,7 @@ class Conexion():
                       'formapago, fecha from clients where dni=:dni')
         query.bindValue(':dni', dni)
 
-        if query.exec():
+        if query.exec_():
             while query.next():
                 apellidos = query.value(1)
                 nombre = query.value(2)

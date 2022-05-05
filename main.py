@@ -50,11 +50,11 @@ class Main(QtWidgets.QMainWindow):
         conexion.Conexion.db_connect(var.filedb)
         conexion.Conexion.mostrarClientes(self)
 
-        var.ui.bajaClie.clicked.connect(conexion.Conexion.bajaCliente)
+        var.ui.bajaClien.clicked.connect(clients.Clientes.bajaClie)
         var.ui.limpiar.clicked.connect(clients.Clientes.limpiarCli)
         var.ui.buscar.clicked.connect(conexion.Conexion.buscarCliente)
-        var.ui.modificar.clicked.connect(clients.Clientes.showClients)
-        var.ui.actualizar.clicked.connect(clients.Clientes.modificar)
+        var.ui.modificar.clicked.connect(clients.Clientes.modificar)
+        var.ui.actualizar.clicked.connect(conexion.Conexion.mostrarClientes)
 
 
 class avisoSalir(QtWidgets.QDialog):

@@ -31,6 +31,24 @@ class Clientes():
         except Exception as error:
             print('Error en modulo validar DNI', error)
 
+    def pay(self):
+        try:
+            var.pay = []
+            for i, data in enumerate(var.ui.grupoPago.buttons()):
+                if data.isChecked() and i == 0:
+                    var.pay = 'Efectivo'
+                    print('Pago con efectivo')
+                if data.isChecked() and i == 1:
+                    var.pay = 'Tarjeta'
+                    print('Pago con tarjeta')
+                if data.isChecked() and i == 2:
+                    var.pay = 'Transferencia'
+                    print('Pago con transferencia')
+            return var.pay
+
+        except Exception as error:
+            print('Error selPago, ' % str(error))
+
     def selSexo(self):
         try:
             if var.ui.radioButtonFem_2.isChecked():
@@ -83,8 +101,7 @@ class Clientes():
             # Prepara el registro
             newcli = []
             clitab = []
-            client = [var.ui.CampoDNI, var.ui.CampoApellidos, var.ui.CampoNombre, var.ui.CampoApellidos_2,
-                      var.ui.comboBox, var.ui.grupoSexo, var.ui.grupoPago]
+            client = [var.ui.CampoDNI, var.ui.CampoApellidos, var.ui.CampoNombre, var.ui.CampoApellidos_2]
             k = 0
             for i in client:
                 newcli.append(i.text())
@@ -93,13 +110,13 @@ class Clientes():
                     k += 1
 
             # Elimina duplicados
-            # var.pay = set(var.pay)
+            var.pay = set(var.pay)
             #########################################################################################
 
             var.pay2 = events.Eventos.grupoPago()
             newcli.append(var.vpro)
             newcli.append(var.sex)
-            newcli.append(var.pay2[0])
+            newcli.append(var.pay[0])
             newcli.append(var.ui.CampoFecha.text())
 
             if client:
@@ -139,12 +156,12 @@ class Clientes():
         except Exception as error:
             print('Error: %s' % str(error))
 
-    def bajaClie(dni):
+    def bajaClie(self):
         try:
-            dni = var.ui.CampoDNI().currentText()
+            dni = var.ui.CampoDNI.text()
             conexion.Conexion.bajaCliente(dni)
-            conexion.Conexion.mostrarClientes(dni)
-            Clientes.limpiarCli(dni)
+            conexion.Conexion.mostrarClientes(self)
+            # Clientes.limpiarCli()
 
         except Exception as error:
             print('Error cargar clientes: %s ' % str(error))
@@ -152,36 +169,37 @@ class Clientes():
     def modificar(self):
         try:
             newdata = []
-            client = [var.ui.CampoDNI, var.ui.CampoApellidos, var.ui.CampoNombre, var.ui.CampoApellidos_2]
+            client = [var.ui.CampoDNI, var.ui.CampoApellidos, var.ui.CampoNombre, var.ui.CampoApellidos_2,
+                      var.ui.comboBox]
             for i in client:
                 newdata.append(i.text())
             newdata.append(var.ui.comboBox.currentText())
             newdata.append(var.sex)
-            #var.pay = Clientes.grupoPago()
-            #print(var.pay)
-            #newdata.append(var.pay)
-            #codigo = var.ui.codigo.text()
-            #conexion.Conexion.modificar(codigo, newdata)
-            #conexion.Conexion.mostrarClientes()
+            var.pay = Clientes.grupoPago()
+            print(var.pay)
+            newdata.append(var.pay)
+            codigo = var.ui.codigo.text()
+            conexion.Conexion.modificar(codigo, newdata)
+            conexion.Conexion.mostrarClientes()
 
         except Exception as error:
             print('Error al cargar clientes: %s' % str(error))
 
     def limpiarCli(self):
         var.ui.CampoDNI.setText("")
-        var.ui.CampoFechaset.setText("")
+        var.ui.CampoFecha.setText("")
         var.ui.CampoApellidos.setText("")
         var.ui.CampoNombre.setText("")
         var.ui.CampoApellidos_2.setText("")
-        var.ui.comboBox.setText(0)
+        var.ui.comboBox.setCurrentIndex(0)
 
-        var.ui.horizontalLayout_2.setExclusive(False)
+        var.ui.grupoSexo.setExclusive(False)
         var.ui.radioButtonFem_2.setChecked(False)
         var.ui.radioButtonMas_2.setChecked(False)
-        var.ui.GrupoSexo.setExclusive(True)
+        var.ui.grupoSexo.setExclusive(True)
 
-        var.ui.metodoPago_2.setExclusive(False)
+        var.ui.grupoPago.setExclusive(False)
         var.ui.checkEfect_2.setChecked(False)
         var.ui.checkTarjeta_2.setChecked(False)
         var.ui.checkTransfe_2.setChecked(False)
-        var.ui.GrupoPago.setExclusive(True)
+        var.ui.grupoPago.setExclusive(True)
