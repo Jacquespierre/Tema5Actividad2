@@ -186,7 +186,7 @@ class Ui_MainWindow(object):
         self.actualizar.setIcon(icon5)
         self.actualizar.setObjectName("actualizar")
         self.label_2 = QtWidgets.QLabel(self.clientes)
-        self.label_2.setGeometry(QtCore.QRect(330, 120, 191, 20))
+        self.label_2.setGeometry(QtCore.QRect(330, 120, 401, 20))
         self.label_2.setText("")
         self.label_2.setObjectName("label_2")
         self.tabWidget.addTab(self.clientes, "")
