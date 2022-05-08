@@ -11,7 +11,6 @@ from windowAviso import *
 
 from PyQt5 import QtWidgets, QtSql
 
-
 #########################################################################################
 
 

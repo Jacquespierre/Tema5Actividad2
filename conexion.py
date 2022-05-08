@@ -103,8 +103,8 @@ class Conexion():
     def buscarCliente():
         codigo = var.ui.CampoDNI.text()
         query = QtSql.QSqlQuery()
-        query.prepare('select dni, apellidos, nombre, direccion, provincia, sexo,'
-                      'formapago, fechaalta from clients where dni=:dni')
+        query.prepare('select dni, apellidos, nombre, direccion, provincia, '
+                      'sexo, formapago, fechaalta from clientes where dni=:dni')
         query.bindValue(':dni', codigo)
 
         if query.exec_():
@@ -255,13 +255,12 @@ class Conexion():
                 elif (formapago == 'Tarjeta'):
                     var.ui.checkTarjeta_2.click()
                 elif (formapago == 'Transferencia'):
-                    var.ui.checkTransferencia_2.click()
+                    var.ui.checkTransfe_2.click()
 
                 # var.ui.metodoPago_2(formapago)
                 var.ui.CampoFecha.setText(fechaalta)
-            else:
-                print('Error al buscar cliente: , query.lastError().text()')
-            print('Cliente con DNI' + codigo + ' se ha encontrado.')
-            var.ui.label_2('El cliente con DNI ' + codigo + ' se ha encontrado')
+
+                print('Cliente con DNI' + codigo + ' se ha encontrado.')
+                var.ui.label_2.setText('El cliente con DNI ' + codigo + ' se ha encontrado')
         else:
             print('Error al buscar cliente', query.lastError().text())
