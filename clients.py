@@ -169,18 +169,18 @@ class Clientes():
     def modificar(self):
         try:
             newdata = []
-            client = [var.ui.CampoDNI, var.ui.CampoApellidos, var.ui.CampoNombre, var.ui.CampoApellidos_2,
-                      var.ui.comboBox]
+            client = [var.ui.CampoDNI, var.ui.CampoApellidos, var.ui.CampoNombre, var.ui.CampoApellidos_2]
             for i in client:
                 newdata.append(i.text())
             newdata.append(var.ui.comboBox.currentText())
             newdata.append(var.sex)
-            var.pay = Clientes.grupoPago()
+            var.pay = events.Eventos.grupoPago()
             print(var.pay)
             newdata.append(var.pay)
-            codigo = var.ui.codigo.text()
-            conexion.Conexion.modificar(codigo, newdata)
-            conexion.Conexion.mostrarClientes()
+            newdata.append(var.ui.CampoFecha.text())
+            print(newdata)
+            conexion.Conexion.modificar(newdata)
+            conexion.Conexion.mostrarClientes(self)
 
         except Exception as error:
             print('Error al cargar clientes: %s' % str(error))
