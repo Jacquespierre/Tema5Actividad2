@@ -1,4 +1,3 @@
-import PyQt5
 from PyQt5 import QtSql, QtWidgets
 
 import var
@@ -42,7 +41,8 @@ class Conexion():
     def mostrarClientes(self):
         index = 0
         query = QtSql.QSqlQuery()
-        query.prepare('select dni, apellidos, nombre, direccion, provincia, sexo, formapago, fechaalta from clientes')
+        query.prepare('select dni, apellidos, nombre, direccion, '
+                      'provincia, sexo, formapago, fechaalta from clientes')
         if query.exec_():
             while query.next():
                 dni = query.value(0)
@@ -100,37 +100,168 @@ class Conexion():
         else:
             print("Error modificar cliente: ", query.lastError().text())
 
-    def buscarCliente(self):
-        dni = var.ui.CampoDNI.text()
+    def buscarCliente():
+        codigo = var.ui.CampoDNI.text()
         query = QtSql.QSqlQuery()
-        query.prepare('select apellidos, nombre, direccion, provincia, sexo,'
-                      'formapago, fecha from clients where dni=:dni')
-        query.bindValue(':dni', dni)
+        query.prepare('select dni, apellidos, nombre, direccion, provincia, sexo,'
+                      'formapago, fechaalta from clients where dni=:dni')
+        query.bindValue(':dni', codigo)
 
         if query.exec_():
             while query.next():
+                dni = query.value(0)
                 apellidos = query.value(1)
                 nombre = query.value(2)
                 direccion = query.value(3)
                 provincia = query.value(4)
                 sexo = query.value(5)
                 formapago = query.value(6)
-                fecha = query.value(7)
+                fechaalta = query.value(7)
 
-                var.ui.CampoNombre(nombre)
-                var.ui.CampoApellidos(apellidos)
-                var.ui.CampoApellidos_2(direccion)
-                var.ui.comboBox(direccion)
-                prov = ['Álava', 'Albacete', 'Alicante', 'Almería', 'Asturias', 'Ávila', 'Badajoz', 'Barcelona',
-                        'Burgos', 'Cáceres', 'Cádiz', 'Cantabria', 'Castellón', 'Ceuta', 'Ciudad', 'Real', 'Córdoba',
-                        'Cuenca', 'Girona', 'Las Palmas', 'Granada', 'Guadalajara', 'Guipúzcoa', 'Huelva', 'Huesca',
-                        'Illes Balears', 'Jaén', 'A Coruña', 'La Rioja', 'León', 'Lleida', 'Lugo', 'Madrid', 'Málaga',
-                        'Melilla', 'Murcia', 'Navarra', 'Ourense', 'Palencia', 'Pontevedra', 'Salamanca', 'Segovia',
-                        'Sevilla', 'Soria', 'Tarragona', 'Santa Cruz de Tenerife', 'Teruel', 'Toledo', 'Valencia',
-                        'Valladolid', 'Vizcaya', 'Zamora', 'Zaragoza']
-                var.ui.ComboBox.setCurrentIndex.range(52)
-                if (prov not in provincia):
-                    print('Provincia no está en la lista')
-                var.ui.horizontalLayout_2(sexo)
-                var.ui.metodoPago_2(formapago)
-                var.ui.CampoFecha(fecha)
+                var.ui.CampoDNI.setText(dni)
+                var.ui.CampoApellidos.setText(apellidos)
+                var.ui.CampoNombre.setText(nombre)
+                var.ui.CampoApellidos_2.setText(direccion)
+                #prov = ['Álava', 'Albacete', 'Alicante', 'Almería', 'Asturias', 'Ávila', 'Badajoz', 'Barcelona',
+                #        'Burgos', 'Cáceres', 'Cádiz', 'Cantabria', 'Castellón', 'Ceuta', 'Ciudad', 'Real', 'Córdoba',
+                #        'Cuenca', 'Girona', 'Las Palmas', 'Granada', 'Guadalajara', 'Guipúzcoa', 'Huelva', 'Huesca',
+                #        'Illes Balears', 'Jaén', 'A Coruña', 'La Rioja', 'León', 'Lleida', 'Lugo', 'Madrid', 'Málaga',
+                ##        'Melilla', 'Murcia', 'Navarra', 'Ourense', 'Palencia', 'Pontevedra', 'Salamanca', 'Segovia',
+                #        'Sevilla', 'Soria', 'Tarragona', 'Santa Cruz de Tenerife', 'Teruel', 'Toledo', 'Valencia',
+                #        'Valladolid', 'Vizcaya', 'Zamora', 'Zaragoza']
+                #var.ui.ComboBox.setCurrentIndex.range(52)
+                #if (prov not in provincia):
+                #    print('Provincia no está en la lista')
+
+                if (provincia == "Álava"):
+                    var.ui.comboBox.setCurrentIndex(1)
+                elif (provincia == "Albacete"):
+                    var.ui.comboBox.setCurrentIndex(2)
+                elif (provincia == "Alicante"):
+                    var.ui.comboBox.setCurrentIndex(3)
+                elif (provincia == "Almería"):
+                    var.ui.comboBox.setCurrentIndex(4)
+
+                elif (provincia == "Asturias"):
+                    var.ui.comboBox.setCurrentIndex(5)
+                elif (provincia == "Ávila"):
+                    var.ui.comboBox.setCurrentIndex(6)
+                elif (provincia == "Badajoz"):
+                    var.ui.comboBox.setCurrentIndex(7)
+                elif (provincia == "Barcelona"):
+                    var.ui.comboBox.setCurrentIndex(8)
+
+                elif (provincia == "Burgos"):
+                    var.ui.comboBox.setCurrentIndex(9)
+                elif (provincia == "Cáceres"):
+                    var.ui.comboBox.setCurrentIndex(10)
+                elif (provincia == "Cádiz"):
+                    var.ui.comboBox.setCurrentIndex(11)
+                elif (provincia == "Cantabria"):
+                    var.ui.comboBox.setCurrentIndex(12)
+
+                elif (provincia == "Castellón"):
+                    var.ui.comboBox.setCurrentIndex(13)
+                elif (provincia == "Ciudad Real"):
+                    var.ui.comboBox.setCurrentIndex(14)
+                elif (provincia == "Córdoba"):
+                    var.ui.comboBox.setCurrentIndex(15)
+                elif (provincia == "Cuenca"):
+                    var.ui.comboBox.setCurrentIndex(16)
+
+                elif (provincia == "Gerona"):
+                    var.ui.comboBox.setCurrentIndex(17)
+                elif (provincia == "Granada"):
+                    var.ui.comboBox.setCurrentIndex(18)
+                elif (provincia == "Guadalajara"):
+                    var.ui.comboBox.setCurrentIndex(19)
+                elif (provincia == "Guipúzcoa"):
+                    var.ui.comboBox.setCurrentIndex(20)
+
+                elif (provincia == "Huelva"):
+                    var.ui.comboBox.setCurrentIndex(21)
+                elif (provincia == "Huesca"):
+                    var.ui.comboBox.setCurrentIndex(22)
+                elif (provincia == "Islas Baleares"):
+                    var.ui.comboBox.setCurrentIndex(23)
+                elif (provincia == "Jaén"):
+                    var.ui.comboBox.setCurrentIndex(24)
+                elif (provincia == "La Coruña"):
+                    var.ui.comboBox.setCurrentIndex(25)
+                elif (provincia == "La Rioja"):
+                    var.ui.comboBox.setCurrentIndex(26)
+                elif (provincia == "Las Palmas"):
+                    var.ui.comboBox.setCurrentIndex(27)
+                elif (provincia == "León"):
+                    var.ui.comboBox.setCurrentIndex(28)
+
+                elif (provincia == "Lérida"):
+                    var.ui.comboBox.setCurrentIndex(29)
+                elif (provincia == "Lugo"):
+                    var.ui.comboBox.setCurrentIndex(30)
+                elif (provincia == "Madrid"):
+                    var.ui.comboBox.setCurrentIndex(31)
+                elif (provincia == "Málaga"):
+                    var.ui.comboBox.setCurrentIndex(32)
+
+                elif (provincia == "Murcia"):
+                    var.ui.comboBox.setCurrentIndex(33)
+                elif (provincia == "Navarra"):
+                    var.ui.comboBox.setCurrentIndex(34)
+                elif (provincia == "Orense"):
+                    var.ui.comboBox.setCurrentIndex(35)
+                elif (provincia == "Palencia"):
+                    var.ui.comboBox.setCurrentIndex(36)
+
+                elif (provincia == "Pontevedra"):
+                    var.ui.comboBox.setCurrentIndex(37)
+                elif (provincia == "Salamanca"):
+                    var.ui.comboBox.setCurrentIndex(38)
+                elif (provincia == "Santa Cruz de Tenerife"):
+                    var.ui.comboBox.setCurrentIndex(39)
+                elif (provincia == "Segovia"):
+                    var.ui.comboBox.setCurrentIndex(40)
+
+                elif (provincia == "Sevilla"):
+                    var.ui.comboBox.setCurrentIndex(41)
+                elif (provincia == "Soria"):
+                    var.ui.comboBox.setCurrentIndex(42)
+                elif (provincia == "Tarragona"):
+                    var.ui.comboBox.setCurrentIndex(43)
+                elif (provincia == "Teruel"):
+                    var.ui.comboBox.setCurrentIndex(44)
+
+                elif (provincia == "Toledo"):
+                    var.ui.comboBox.setCurrentIndex(45)
+                elif (provincia == "Valencia"):
+                    var.ui.comboBox.setCurrentIndex(46)
+                elif (provincia == "Valladolid"):
+                    var.ui.comboBox.setCurrentIndex(47)
+                elif (provincia == "Vizcaya"):
+                    var.ui.comboBox.setCurrentIndex(48)
+                elif (provincia == "Zamora"):
+                    var.ui.comboBox.setCurrentIndex(49)
+                elif (provincia == "Zaragoza"):
+                    var.ui.comboBox.setCurrentIndex(50)
+
+                if (sexo == 'Femenino'):
+                    var.ui.radioButtonFem_2.click()
+                else:
+                    var.ui.radioButtonFem_2.click()
+                # var.ui.horizontalLayout_2(sexo)
+
+                if (formapago == 'Efectivo'):
+                    var.ui.checkEfect_2.click()
+                elif (formapago == 'Tarjeta'):
+                    var.ui.checkTarjeta_2.click()
+                elif (formapago == 'Transferencia'):
+                    var.ui.checkTransferencia_2.click()
+
+                # var.ui.metodoPago_2(formapago)
+                var.ui.CampoFecha.setText(fechaalta)
+            else:
+                print('Error al buscar cliente: , query.lastError().text()')
+            print('Cliente con DNI' + codigo + ' se ha encontrado.')
+            var.ui.label_2('El cliente con DNI ' + codigo + ' se ha encontrado')
+        else:
+            print('Error al buscar cliente', query.lastError().text())
