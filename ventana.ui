@@ -573,7 +573,7 @@
      <x>0</x>
      <y>0</y>
      <width>1271</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArchivo">
@@ -587,7 +587,24 @@
     <addaction name="separator"/>
     <addaction name="actionSalir"/>
    </widget>
+   <widget class="QMenu" name="menuInformes">
+    <property name="title">
+     <string>Informes</string>
+    </property>
+    <addaction name="actionInstrucciones"/>
+   </widget>
+   <widget class="QMenu" name="menuHerramientas">
+    <property name="title">
+     <string>Herramientas</string>
+    </property>
+    <addaction name="actionImportar_Base_de_Datos"/>
+    <addaction name="separator"/>
+    <addaction name="actionCrear_Backup"/>
+    <addaction name="actionRecuperar_Backup"/>
+   </widget>
    <addaction name="menuArchivo"/>
+   <addaction name="menuInformes"/>
+   <addaction name="menuHerramientas"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
@@ -598,7 +615,7 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <addaction name="separator"/>
    <addaction name="actionAbrir"/>
@@ -645,6 +662,26 @@
    </property>
    <property name="text">
     <string>importar</string>
+   </property>
+  </action>
+  <action name="actionInstrucciones">
+   <property name="text">
+    <string>Instrucciones</string>
+   </property>
+  </action>
+  <action name="actionImportar_Base_de_Datos">
+   <property name="text">
+    <string>Importar Base de Datos</string>
+   </property>
+  </action>
+  <action name="actionCrear_Backup">
+   <property name="text">
+    <string>Crear Backup</string>
+   </property>
+  </action>
+  <action name="actionRecuperar_Backup">
+   <property name="text">
+    <string>Recuperar Backup</string>
    </property>
   </action>
  </widget>
