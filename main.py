@@ -1,15 +1,17 @@
 import sys
 
-import conexion
-import var
-import events
+from PyQt5 import QtWidgets
+
 import clients
+import conexion
+import events
+import var
 from ventana import *
 from ventanaCalendario import *
 from windowAviso import *
-#########################################################################################
 
-from PyQt5 import QtWidgets, QtSql
+
+#########################################################################################
 
 #########################################################################################
 
@@ -21,6 +23,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui = Ui_MainWindow()
         var.ui.setupUi(self)
         var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
+        # var.ui.actionAbrir.triggered.connect(events.Eventos.Abrir)
+        # var.ui.actionComprimir.triggered.connect(events.Eventos.comprimir)
         var.ui.Salir.clicked.connect(events.Eventos.Salir)
         # var.sex = (var.ui.radioButtonFem_2, var.ui.radioButtonMas_2)
         # for i in var.sex:
@@ -56,6 +60,16 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actualizar.clicked.connect(conexion.Conexion.mostrarClientes)
 
 
+        var.actionAbrir = FileDialogAbrir()
+        var.ui.actionAbrir.triggered.connect(events.Eventos.Abrir)
+
+        var.ui.spinEnvio.valueChanged.connect(events.Eventos.formaEnvio)
+        var.ui.spinEnvio.setMinimum(0)
+        var.ui.spinEnvio.setMaximum(3)
+
+
+
+
 class avisoSalir(QtWidgets.QDialog):
     def __init__(self):
         super(avisoSalir, self).__init__()
@@ -74,6 +88,10 @@ class DialogCalendar(QtWidgets.QDialog):
         # var.dlgcalendar.calendarWidget.setSelectedDate((QtCore.QDate(anoactual, mesactual, diaactual)))
         var.dlgcalendar.calendarWidget.clicked.connect(clients.Clientes.cargarFecha)
 
+
+class FileDialogAbrir(QtWidgets.QFileDialog):
+    def __init__(self):
+        super(FileDialogAbrir, self).__init__()
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])

@@ -5,10 +5,10 @@ import var
 
 class Conexion():
 
-    def db_connect(clientes):
+    def db_connect(filename):
 
         db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
-        db.setDatabaseName(clientes)
+        db.setDatabaseName(filename)
         if not db.open():
             QtWidgets.QMessageBox.critical(None, 'No se puede abrir la base de datos',
                                            'No se puede establecer conexión.\n ' 'Haz Click para Cancelar.',
@@ -20,8 +20,9 @@ class Conexion():
 
     def cargarCli(clientes):
         query = QtSql.QSqlQuery()
-        query.prepare('insert into clientes (dni, apellidos, nombre, direccion, provincia, sexo, formapago, fechaalta)'
-                      'VALUES (:dni, :apellidos, :nombre, :direccion, :provincia, :sexo, :formapago, :fechaalta)')
+        query.prepare(
+            'insert into clientes (dni, apellidos, nombre, direccion, provincia, sexo, formapago, fechaalta, envio)'
+            'VALUES (:dni, :apellidos, :nombre, :direccion, :provincia, :sexo, :formapago, :fechaalta, :envio)')
         query.bindValue(':dni', str(clientes[0]))
         query.bindValue(':apellidos', str(clientes[1]))
         query.bindValue(':nombre', str(clientes[2]))
@@ -31,6 +32,7 @@ class Conexion():
         # pagos
         query.bindValue(':formapago', str(clientes[6]))
         query.bindValue(':fechaalta', str(clientes[7]))
+        query.bindValue(':envio', str(clientes[8]))
         # print (pagos)
         if query.exec_():
             print("Inserción correcta")
@@ -42,7 +44,7 @@ class Conexion():
         index = 0
         query = QtSql.QSqlQuery()
         query.prepare('select dni, apellidos, nombre, direccion, '
-                      'provincia, sexo, formapago, fechaalta from clientes')
+                      'provincia, sexo, formapago, fechaalta, envio from clientes')
         if query.exec_():
             while query.next():
                 dni = query.value(0)
@@ -53,6 +55,7 @@ class Conexion():
                 sexo = query.value(5)
                 formapago = query.value(6)
                 fechaalta = query.value(7)
+                envio = query.value(8)
                 var.ui.tableWidget.setRowCount(index + 1)
                 var.ui.tableWidget.setItem(index, 0, QtWidgets.QTableWidgetItem(dni))
                 var.ui.tableWidget.setItem(index, 1, QtWidgets.QTableWidgetItem(apellidos))
@@ -62,9 +65,10 @@ class Conexion():
                 var.ui.tableWidget.setItem(index, 5, QtWidgets.QTableWidgetItem(sexo))
                 var.ui.tableWidget.setItem(index, 6, QtWidgets.QTableWidgetItem(formapago))
                 var.ui.tableWidget.setItem(index, 7, QtWidgets.QTableWidgetItem(fechaalta))
+                var.ui.tableWidget.setItem(index, 8, QtWidgets.QTableWidgetItem(envio))
                 index += 1
         else:
-            Conexion.mostrarClientes(self)
+            # Conexion.mostrarClientes(self)
             print("Error mostrar los clientes: ", query.lastError().text())
 
     def bajaCliente(dni):
@@ -83,7 +87,7 @@ class Conexion():
         dni = newdata[0]
         query.prepare(
             'update clientes set dni=:dni, apellidos=:apellidos, nombre=:nombre, direccion=:direccion, provincia=:provincia, sexo=:sexo, '
-            'formapago=:formapago, fechaalta=:fechaalta where dni=:dni')
+            'formapago=:formapago, fechaalta=:fechaalta, envio=:envio where dni=:dni')
         query.bindValue(':dni', str(dni))
         query.bindValue(':apellidos', str(newdata[1]))
         query.bindValue(':nombre', str(newdata[2]))
@@ -92,6 +96,7 @@ class Conexion():
         query.bindValue(':sexo', str(newdata[5]))
         query.bindValue(':formapago', str(newdata[6]))
         query.bindValue(':fechaalta', str(newdata[7]))
+        query.bindValue(':envio', str(newdata[8]))
 
         if query.exec_():
             print('Cliente modificado')
@@ -103,7 +108,7 @@ class Conexion():
         codigo = var.ui.CampoDNI.text()
         query = QtSql.QSqlQuery()
         query.prepare('select dni, apellidos, nombre, direccion, provincia, '
-                      'sexo, formapago, fechaalta from clientes where dni=:dni')
+                      'sexo, formapago, fechaalta, envio from clientes where dni=:dni')
         query.bindValue(':dni', codigo)
 
         if query.exec_():
@@ -116,6 +121,7 @@ class Conexion():
                 sexo = query.value(5)
                 formapago = query.value(6)
                 fechaalta = query.value(7)
+                envio = query.value(8)
 
                 var.ui.CampoDNI.setText(dni)
                 var.ui.CampoApellidos.setText(apellidos)
@@ -259,7 +265,30 @@ class Conexion():
                 # var.ui.metodoPago_2(formapago)
                 var.ui.CampoFecha.setText(fechaalta)
 
+                var.ui.label_3.setText(envio)
+
                 print('Cliente con DNI' + codigo + ' se ha encontrado.')
                 var.ui.label_2.setText('El cliente con DNI ' + codigo + ' se ha encontrado')
         else:
             print('Error al buscar cliente', query.lastError().text())
+
+    def recuperarBackup(self):
+        try:
+            option = QtWidgets.QFileDialog.Options()
+            filename = var.actionAbrir.getOpenFileName(None, 'Restaurar copia', '', '*.zip', options=option)
+            clientes = str(filename[0])
+            if var.actionAbrir.Accepted and filename != '' and clientes.endswith('.zip'):
+                carpeta = clientes.add('s')
+                shutil.unpack_archive(clientes, carpeta, 'zip')
+                directorio = os.path.basename(carpeta)
+                archivo = os.listdir(directorio)
+                var.filedb = archivo[0]
+                conexion.Conexion.db_connect(var.filedb)
+                var.ui.lblstatus.setText('Base de datos %s recuperada' % baseDatos)
+                conexion.Conexion.mostrarCli(self)
+            else:
+                conexion.Conexion.mostrarCli(self)
+                var.ui.lblstatus.setText('Para recuperar el BACKUP debe ser un archivo ZIP')
+                print('El BACKUP debe ser un archivo ZIP')
+        except Exception as error:
+            print('Error recuperar zip base de datos: %s' % str(error))

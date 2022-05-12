@@ -31,3 +31,21 @@ class Eventos:
 
         except Exception as error:
             print('Error: %s ' % str(error))
+
+    def formaEnvio():
+        try:
+            envio = var.ui.spinEnvio.value()
+            listaEnvio = ['Recogida por cliente',
+                                'Envío nacional paquetería exprés urgente',
+                                'Envío nacional paquetería normal',
+                                'Envío internacional']
+            var.formaEnvio = listaEnvio[envio]
+            var.ui.label_3.setText(var.formaEnvio)
+        except Exception as error:
+            print('Error al seleccionar envio: %' % str(error))
+
+    def Abrir(self):
+        try:
+            var.actionAbrir.show()
+        except Exception as error:
+            print('Error al abrir el explorador: %s' % str(error))

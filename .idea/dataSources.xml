@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="clientes.db" uuid="33cd184f-c569-49df-9b12-0d4e1b13d326">
+    <data-source source="LOCAL" name="clientes.db.sql" uuid="48cff0e5-69b8-48e7-bd34-e717b6301ab1">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\a20santiagojfc\PycharmProjects\Tema5Actividad2\clientes.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/clientes.db.sql</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="clientes" uuid="752e1c9b-3f11-45a2-be51-a9e6001540ea">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\BLackJack\Dropbox\Ciclo DAM\Desdenvolvimiento de Interfaces\Ejercicios\Tema5Actividad3\clientes.db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+      <libraries>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.36.0.3/sqlite-jdbc-3.36.0.3.jar</url>
+        </library>
+      </libraries>
     </data-source>
   </component>
 </project>

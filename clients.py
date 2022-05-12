@@ -1,7 +1,8 @@
+from PyQt5 import QtWidgets
+
 import conexion
-import var
 import events
-from PyQt5 import QtWidgets, QtSql
+import var
 
 
 class Clientes():
@@ -105,7 +106,7 @@ class Clientes():
             k = 0
             for i in client:
                 newcli.append(i.text())
-                if k < 4:
+                if k < 9:
                     clitab.append(i.text())
                     k += 1
 
@@ -118,6 +119,10 @@ class Clientes():
             newcli.append(var.sex)
             newcli.append(var.pay[0])
             newcli.append(var.ui.CampoFecha.text())
+
+            #########################################################################################
+            newcli.append(var.formaEnvio)
+            #########################################################################################
 
             if client:
                 # Comprobamos que no esté vacio lo principal como tableWidget
@@ -137,24 +142,6 @@ class Clientes():
             # clients.limpiarCli(client, var.selSexo, var.checkPago)
         except Exception as error:
             print("Error alta cliente: %s" % str(error))
-
-            #########################################################################################
-
-            for j in var.pay:
-                newcli.append(j)
-            newcli.append(var.sex)
-            print(newcli)
-            print(clitab)
-            row = 0  # disposicion de la fila, problema: coloca el último como primero en cada click
-            column = 0  # disposicion de la columna
-            var.ui.tableWidget.insertRow(row)  # Inserta una fila nueva con cada click de botón
-            for registro in clitab:
-                # la celda tiene una posición fila, columa y cargamos en ella el dato
-                cell = QtWidgets.QTableWidgetItem(registro)  # carga en cell cada dato de la lista
-                var.ui.tableWidget.setItem(row, column, cell)  # lo escribe
-                column += 1
-        except Exception as error:
-            print('Error: %s' % str(error))
 
     def bajaClie(self):
         try:
@@ -178,6 +165,7 @@ class Clientes():
             print(var.pay)
             newdata.append(var.pay)
             newdata.append(var.ui.CampoFecha.text())
+            newdata.append(var.listaEnvio)
             print(newdata)
             conexion.Conexion.modificar(newdata)
             conexion.Conexion.mostrarClientes(self)
@@ -192,6 +180,8 @@ class Clientes():
         var.ui.CampoNombre.setText("")
         var.ui.CampoApellidos_2.setText("")
         var.ui.comboBox.setCurrentIndex(0)
+        var.ui.spinEdad.setValue(0)
+        var.ui.label_3.setText("")
 
         var.ui.grupoSexo.setExclusive(False)
         var.ui.radioButtonFem_2.setChecked(False)
