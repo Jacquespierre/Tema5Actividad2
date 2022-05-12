@@ -1,6 +1,7 @@
 import sys
 import var
 import sqlite3
+import xlrd
 
 class Eventos:
 
@@ -72,7 +73,9 @@ class Eventos:
             except sqlite3.Error as e:
                 print('Se ha producido un error al restaurar la base de datos: ', e)
 
-    conexion = nuevaConexion('CopiaBaseDatos/clientes.db')
+        conexion = nuevaConexion('CopiaBaseDatos/clientes.db')
 
-    if conexion:
-       conexion.close()
+        if conexion:
+            conexion.close()
+
+    documento = xlrd.open_workbook(clientes.xls)
