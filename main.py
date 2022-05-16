@@ -75,7 +75,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionComprimir.triggered.connect(copiaSeguridad.CopiaSeguridad.Backup)
         var.ui.actionCrearBuckup.triggered.connect(copiaSeguridad.CopiaSeguridad.Backup)
 
-        var.ui.actionInportarBackup.triggered.connect(copiaSeguridad.CopiaSeguridad.recuperarBackup)
+        var.ui.actionImportarBackup.triggered.connect(copiaSeguridad.CopiaSeguridad.recuperarBackup)
 
         var.ui.actionImportarDatos.triggered.connect(copiaSeguridad.CopiaSeguridad.importarDatos)
         var.ui.actionDatos.triggered.connect(clientes.Clientes.borrarClientes)

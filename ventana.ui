@@ -595,7 +595,7 @@
     <addaction name="actionAbrir"/>
     <addaction name="separator"/>
     <addaction name="actionComprimir"/>
-    <addaction name="actionimportar"/>
+    <addaction name="actionImportarBackup"/>
     <addaction name="separator"/>
     <addaction name="actionSalir"/>
    </widget>
@@ -609,7 +609,7 @@
     <property name="title">
      <string>Herramientas</string>
     </property>
-    <addaction name="actionImportarDatos"/>
+    <addaction name="actionImportarBackup"/>
     <addaction name="separator"/>
     <addaction name="actionCrearBackup"/>
     <addaction name="actionRecuperarBackup"/>
@@ -617,8 +617,8 @@
     <addaction name="actionBorrarDatos"/>
    </widget>
    <addaction name="menuArchivo"/>
-   <addaction name="menuHerramientas"/>
    <addaction name="menuInformes"/>
+   <addaction name="menuHerramientas"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
@@ -634,7 +634,7 @@
    <addaction name="separator"/>
    <addaction name="actionAbrir"/>
    <addaction name="actionComprimir"/>
-   <addaction name="actionimportar"/>
+   <addaction name="actionImportarBackup"/>
    <addaction name="actionSalir"/>
   </widget>
   <action name="actionSalir">
@@ -669,36 +669,51 @@
     <string>Comprimir</string>
    </property>
   </action>
-  <action name="actionimportar">
+  <action name="actionImportarBackup">
    <property name="icon">
     <iconset>
      <normaloff>Imagenes/importar.png</normaloff>Imagenes/importar.png</iconset>
    </property>
    <property name="text">
-    <string>importar</string>
+    <string>Importar Backup</string>
+   </property>
+   <property name="toolTip">
+    <string>Importar</string>
    </property>
   </action>
   <action name="actionCrearInforme">
+   <property name="icon">
+    <iconset>
+     <normaloff>Imagenes/informe.png</normaloff>Imagenes/informe.png</iconset>
+   </property>
    <property name="text">
     <string>Crear Informe</string>
    </property>
   </action>
-  <action name="actionImportarDatos">
-   <property name="text">
-    <string>Importar Datos</string>
-   </property>
-  </action>
   <action name="actionCrearBackup">
+   <property name="icon">
+    <iconset>
+     <normalon>Imagenes/backup.png</normalon>
+    </iconset>
+   </property>
    <property name="text">
     <string>Crear Backup</string>
    </property>
   </action>
   <action name="actionRecuperarBackup">
+   <property name="icon">
+    <iconset>
+     <normaloff>Imagenes/recuperar.png</normaloff>Imagenes/recuperar.png</iconset>
+   </property>
    <property name="text">
     <string>Recuperar Backup</string>
    </property>
   </action>
   <action name="actionBorrarDatos">
+   <property name="icon">
+    <iconset>
+     <normaloff>Imagenes/borrar.png</normaloff>Imagenes/borrar.png</iconset>
+   </property>
    <property name="text">
     <string>Borrar Datos</string>
    </property>
