@@ -4,7 +4,9 @@ from PyQt5 import QtWidgets
 
 import clients
 import conexion
+import copiaSeguridad
 import events
+import informes
 import var
 from ventana import *
 from ventanaCalendario import *
@@ -59,6 +61,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.modificar.clicked.connect(clients.Clientes.modificar)
         var.ui.actualizar.clicked.connect(conexion.Conexion.mostrarClientes)
 
+        conexion.Conexion.fechaStatusBar()
 
         var.actionAbrir = FileDialogAbrir()
         var.ui.actionAbrir.triggered.connect(events.Eventos.Abrir)
@@ -67,8 +70,15 @@ class Main(QtWidgets.QMainWindow):
         var.ui.spinEnvio.setMinimum(0)
         var.ui.spinEnvio.setMaximum(3)
 
+        var.ui.actionCrearInforme.triggered.connect(informes.Informes.reportCli)
 
+        var.ui.actionComprimir.triggered.connect(copiaSeguridad.CopiaSeguridad.Backup)
+        var.ui.actionCrearBuckup.triggered.connect(copiaSeguridad.CopiaSeguridad.Backup)
 
+        var.ui.actionInportarBackup.triggered.connect(copiaSeguridad.CopiaSeguridad.recuperarBackup)
+
+        var.ui.actionImportarDatos.triggered.connect(copiaSeguridad.CopiaSeguridad.importarDatos)
+        var.ui.actionDatos.triggered.connect(clientes.Clientes.borrarClientes)
 
 class avisoSalir(QtWidgets.QDialog):
     def __init__(self):

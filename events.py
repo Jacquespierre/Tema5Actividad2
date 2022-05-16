@@ -1,5 +1,6 @@
 import sys
 import var
+import datetime
 
 class Eventos:
 
@@ -49,3 +50,9 @@ class Eventos:
             var.actionAbrir.show()
         except Exception as error:
             print('Error al abrir el explorador: %s' % str(error))
+
+    def fechaActual(formato = "%d/%m/%Y"):
+        fecha = datetime.datetime.now()
+        fecha = fecha.strftime(formato)
+        return str(fecha)
+

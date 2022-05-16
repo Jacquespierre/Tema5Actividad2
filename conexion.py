@@ -1,7 +1,7 @@
 from PyQt5 import QtSql, QtWidgets
 
 import var
-
+import events
 
 class Conexion():
 
@@ -272,23 +272,5 @@ class Conexion():
         else:
             print('Error al buscar cliente', query.lastError().text())
 
-    def recuperarBackup(self):
-        try:
-            option = QtWidgets.QFileDialog.Options()
-            filename = var.actionAbrir.getOpenFileName(None, 'Restaurar copia', '', '*.zip', options=option)
-            clientes = str(filename[0])
-            if var.actionAbrir.Accepted and filename != '' and clientes.endswith('.zip'):
-                carpeta = clientes.add('s')
-                shutil.unpack_archive(clientes, carpeta, 'zip')
-                directorio = os.path.basename(carpeta)
-                archivo = os.listdir(directorio)
-                var.filedb = archivo[0]
-                conexion.Conexion.db_connect(var.filedb)
-                var.ui.lblstatus.setText('Base de datos %s recuperada' % baseDatos)
-                conexion.Conexion.mostrarCli(self)
-            else:
-                conexion.Conexion.mostrarCli(self)
-                var.ui.lblstatus.setText('Para recuperar el BACKUP debe ser un archivo ZIP')
-                print('El BACKUP debe ser un archivo ZIP')
-        except Exception as error:
-            print('Error recuperar zip base de datos: %s' % str(error))
+    def fechaStatusBar():
+        var.ui.lblstatus.setText(events.Eventos.fechaActual('   ' + '%H:%M:%S' + '   ' + '%d/%m/%Y'))

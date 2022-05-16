@@ -7,6 +7,7 @@ global vpro
 global grupoPago
 global formaEnvio
 global actionAbrir
+global rep
 
 
 filedb = 'clientes.db'
