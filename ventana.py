@@ -388,6 +388,3 @@ class Ui_MainWindow(object):
         self.actionRecuperarBackup.setText(_translate("MainWindow", "Recuperar Backup"))
         self.actionBorrarDatos.setText(_translate("MainWindow", "Borrar Datos"))
         self.actionImportarDatos.setText(_translate("MainWindow", "Importar Datos"))
-import toolbarAbrir_rc
-import toolbarComprimir_rc
-import toolbarSalir_rc
