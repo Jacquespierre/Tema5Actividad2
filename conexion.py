@@ -276,3 +276,14 @@ class Conexion():
 
     def fechaStatusBar():
         var.ui.lblstatus.setText(events.Eventos.fechaActual('   ' + '%H:%M:%S' + '   ' + '%d/%m/%Y'))
+
+    def importarExcel(filename, pd):
+        archivo = pd.read_excel(filename)
+        if archivo.size == 0:
+            return print("El archivo está vació.")
+        for row in archivo.itertuples():
+            newClient = [row.DNI, row.APELIDOS, row.NOME, row.DIRECCION,
+                         row.PROVINCIA, row.SEXO, row.FORMAPAGO, row.FECHAALTA,
+                         row.ENVIO]
+            print("first", newClient)
+            Conexion.cargarCli(newClient)

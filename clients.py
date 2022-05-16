@@ -193,3 +193,11 @@ class Clientes():
         var.ui.checkTarjeta_2.setChecked(False)
         var.ui.checkTransfe_2.setChecked(False)
         var.ui.grupoPago.setExclusive(True)
+
+    def borrarClientes():
+        if conexion.Conexion.borrarCli():
+            print('Se han borrado todos los datos')
+            var.ui.statusBar.setText('TODOS LOS DATOS BORRADOS')
+        else:
+            print('Error al borrar los datos')
+        conexion.Conexion.cargarCli()

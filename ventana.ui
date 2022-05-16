@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1270</width>
-    <height>786</height>
+    <width>1266</width>
+    <height>769</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -326,9 +326,9 @@
        <widget class="QTableWidget" name="tableWidget">
         <property name="geometry">
          <rect>
-          <x>10</x>
+          <x>130</x>
           <y>360</y>
-          <width>1211</width>
+          <width>971</width>
           <height>221</height>
          </rect>
         </property>
@@ -584,7 +584,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1270</width>
+     <width>1266</width>
      <height>21</height>
     </rect>
    </property>
@@ -595,7 +595,6 @@
     <addaction name="actionAbrir"/>
     <addaction name="separator"/>
     <addaction name="actionComprimir"/>
-    <addaction name="actionImportarBackup"/>
     <addaction name="separator"/>
     <addaction name="actionSalir"/>
    </widget>
@@ -610,6 +609,7 @@
      <string>Herramientas</string>
     </property>
     <addaction name="actionImportarBackup"/>
+    <addaction name="actionImportarDatos"/>
     <addaction name="separator"/>
     <addaction name="actionCrearBackup"/>
     <addaction name="actionRecuperarBackup"/>
@@ -718,7 +718,36 @@
     <string>Borrar Datos</string>
    </property>
   </action>
+  <action name="actionImportarDatos">
+   <property name="text">
+    <string>Importar Datos</string>
+   </property>
+  </action>
  </widget>
+ <tabstops>
+  <tabstop>CampoDNI</tabstop>
+  <tabstop>CampoFecha</tabstop>
+  <tabstop>Calendario</tabstop>
+  <tabstop>CampoApellidos</tabstop>
+  <tabstop>CampoNombre</tabstop>
+  <tabstop>spinEnvio</tabstop>
+  <tabstop>CampoApellidos_2</tabstop>
+  <tabstop>comboBox</tabstop>
+  <tabstop>radioButtonFem_2</tabstop>
+  <tabstop>radioButtonMas_2</tabstop>
+  <tabstop>checkEfect_2</tabstop>
+  <tabstop>checkTarjeta_2</tabstop>
+  <tabstop>checkTransfe_2</tabstop>
+  <tabstop>Aceptar</tabstop>
+  <tabstop>buscar</tabstop>
+  <tabstop>modificar</tabstop>
+  <tabstop>limpiar</tabstop>
+  <tabstop>actualizar</tabstop>
+  <tabstop>bajaClien</tabstop>
+  <tabstop>tableWidget</tabstop>
+  <tabstop>Salir</tabstop>
+  <tabstop>tabWidget</tabstop>
+ </tabstops>
  <resources>
   <include location="Imagenes/toolbarSalir.qrc"/>
   <include location="Imagenes/toolbarComprimir.qrc"/>

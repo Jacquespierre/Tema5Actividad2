@@ -9,7 +9,7 @@ import easygui
 import pandas as pd
 
 import conexion
-import clientes
+import clients
 
 import sys
 import var

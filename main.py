@@ -73,12 +73,12 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionCrearInforme.triggered.connect(informes.Informes.reportCli)
 
         var.ui.actionComprimir.triggered.connect(copiaSeguridad.CopiaSeguridad.Backup)
-        var.ui.actionCrearBuckup.triggered.connect(copiaSeguridad.CopiaSeguridad.Backup)
+        var.ui.actionCrearBackup.triggered.connect(copiaSeguridad.CopiaSeguridad.Backup)
 
         var.ui.actionImportarBackup.triggered.connect(copiaSeguridad.CopiaSeguridad.recuperarBackup)
 
         var.ui.actionImportarDatos.triggered.connect(copiaSeguridad.CopiaSeguridad.importarDatos)
-        var.ui.actionDatos.triggered.connect(clientes.Clientes.borrarClientes)
+        var.ui.actionBorrarDatos.triggered.connect(clients.Clientes.borrarClientes)
 
 class avisoSalir(QtWidgets.QDialog):
     def __init__(self):
